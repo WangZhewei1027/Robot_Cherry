@@ -1,12 +1,14 @@
 # Robot_Cherry
-##项目介绍：</br>
+
+##项目介绍：
+
 这是一个基于个人微信平台的聊天机器人，将会拥有智能应答，语音识别，语音合成等无限可能！
 
 > 使用Python3开发</br>
 > itchat库</br>
 > 百度语音识别接口</br>
 > 图灵机器人接口</br>
-> 平台：Windows；IDE：pycharm；MarkDown文档编辑：MarkDownPad 2；
+> 平台：Windows；IDE：pycharm；MarkDown文档编辑：MarkDownPad 2；</br>
 
 ##项目结构：
 
