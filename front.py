@@ -1,6 +1,7 @@
 # coding=utf-8
 """
 这是对微信的接口
+运行的应该是此脚本！
 关于itchat的资料：http://www.tuicool.com/articles/VJZRRfn ；GitHub：https://github.com/littlecodersh/ItChat
 """
 
