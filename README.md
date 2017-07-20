@@ -14,13 +14,13 @@
 
 - code	这是源代码目录
 	- modules	这是各种模块的目录
-		- * _ _init_ _.py* 设置脚本
+		- *_init_.py* 设置脚本
 		- *robot_port.py* 调用图灵机器人的模块
 		- *phone.py* 查询手机号码归属地等的模块
 	- *front.py* 与微信对接的前端，实际运行的也是这个脚本
 	- *main.py* 主要处理对话的模块
 - *.gitignore* 忽略文件表
-- * _ _init_ _.py* 设置脚本
+- *init.py* 设置脚本
 - *LICENSE*	协议
 - *README.md*	这就是此文档
 
