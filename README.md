@@ -8,14 +8,19 @@
 > itchat库</br>
 > 百度语音识别接口</br>
 > 图灵机器人接口</br>
-> 平台：Windows；IDE：pycharm；MarkDown文档编辑：MarkDownPad 2；</br>
+> 平台：Windows10 64位；IDE：pycharm；MarkDown文档编辑：MarkDownPad 2；</br>
 
 ## 项目结构:</br>
 
 - code	这是源代码目录
+	- modules	这是各种模块的目录
+		- * _ _init_ _.py* 设置脚本
+		- *robot_port.py* 调用图灵机器人的模块
+		- *phone.py* 查询手机号码归属地等的模块
 	- *front.py* 与微信对接的前端，实际运行的也是这个脚本
 	- *main.py* 主要处理对话的模块
-	- *robot.py* 调用图灵机器人的模块
+- *.gitignore* 忽略文件表
+- * _ _init_ _.py* 设置脚本
 - *LICENSE*	协议
 - *README.md*	这就是此文档
 
