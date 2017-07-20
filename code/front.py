@@ -5,10 +5,10 @@
 关于itchat的资料：http://www.tuicool.com/articles/VJZRRfn ；GitHub：https://github.com/littlecodersh/ItChat
 """
 
-
 import itchat
 from itchat.content import *
-import main
+
+from code import main
 
 ROBOT_NAME = '机器人cherry'  # **特别注意!**：请将ROBOT_NAME改为自己个人微信号的名字
 
