@@ -26,7 +26,7 @@ class BaiduRest:
         # 1.获取token
         token_url = self.token_url % (api_key, api_secert)
 
-        r_str = urllib.request.urlopen(token_url).read()
+        r_str = urllib.request.urlopen(token_url).read().decode()
         token_data = json.loads(r_str)
         self.token_str = token_data['access_token']
         pass
@@ -56,7 +56,7 @@ class BaiduRest:
         data['len'] = len(voice_data)
         data['speech'] = base64.b64encode(voice_data).decode('utf-8')
         post_data = json.dumps(data)
-        r_data = urllib.request.urlopen(self.upvoice_url, data=bytes(post_data, encoding="utf-8")).read()
+        r_data = urllib.request.urlopen(self.upvoice_url, data=bytes(post_data, encoding="utf-8")).read().decode()
         # 3.处理返回数据
         try:
             return json.loads(r_data)['result']
