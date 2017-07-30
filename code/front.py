@@ -5,13 +5,16 @@
 关于itchat的资料：http://www.tuicool.com/articles/VJZRRfn ；GitHub：https://github.com/littlecodersh/ItChat
 """
 
-import itchat
 import os
-from itchat.content import *
-from code import main
-from code.modules.voice import *
+import random
 import threading
 import time
+
+import itchat
+from itchat.content import *
+
+from code import main
+from code.modules.voice import *
 
 ROBOT_NAME = 'Cherry'  # **特别注意!**：请将ROBOT_NAME改为自己个人微信号的名字
 
@@ -44,28 +47,29 @@ def recoding_reply(msg):
 def text_reply(msg):
     content = msg['Text']
     fromUserName = msg['FromUserName']
+    time.sleep(random.randint(0, len(content)))
     itchat.send(main.reply(content, fromUserName[5:10]), toUserName=msg['FromUserName'])
-    time.sleep(4)
 
 
 @itchat.msg_register(TEXT, isGroupChat=True)  # 后注册的消息优于先注册的消息，在此先处理群聊消息，就不会出现冲突
 def text_reply(msg):
     if msg['isAt']:  # 如果消息@自己才对消息做出反应
+
         fromUserName = msg['FromUserName']
         content = msg['Text']
         # 这里的content中包含'@...'
         content = content[0:content.find(ROBOT_NAME) - 1] + content[
                                                             msg['Text'].find(ROBOT_NAME) + len(ROBOT_NAME):len(content)]
         # 这句将content中'@...'去除了
+        time.sleep(random.randint(0, len(content)))
         itchat.send(u'@%s\u2005%s' % (msg['ActualNickName'], main.reply(content, fromUserName[5:10])), fromUserName)
         # 这里的'@...'后面要加上'\u2005'这个Unicode字符，这样的@才是有效的
-        time.sleep(4)
 
 
 def birthday():  # TODO：重写函数 2017_07_27
-    global p
-    p = 0
-    class15ChatroomID = '@@53dd642ff051a38bbf69d8ff393c3e8b364b079be6e9df806f97286cb18233a6'
+    p = [['07', '00', '00', '早安', 1], ['12', '00', '00', '午好', 1], ['22', '00', '00', '晚安', 1]]
+
+    class15ChatroomID = '@@8ff7aba40aa33476a7598ca7b9e6336c807c9f02d1247c090aa3f45c4b4bbf64'
     while (1):
         year = time.strftime('%Y', time.localtime(time.time()))
         month = time.strftime('%m', time.localtime(time.time()))
@@ -74,11 +78,15 @@ def birthday():  # TODO：重写函数 2017_07_27
         min = time.strftime('%M', time.localtime(time.time()))
         second = time.strftime('%S', time.localtime(time.time()))
 
-        if hour == '05':
-            if p == 0:
-                itchat.send('早！', class15ChatroomID)
-                p = 1
-        time.sleep(5)
+        if hour == '00':
+            for i in range(0, len(p)):
+                p[i][4] = 0
+
+        for i in range(0, len(p)):
+            if p[i][4] == 0:
+                if (p[i][0] <= hour) and (p[i][1] <= min) and (p[i][2] <= second):  # TODO:解决运行速度和秒的判断边缘情况冲突
+                    itchat.send(p[i][3], class15ChatroomID)
+                    p[i][4] = 1
 
 
 itchat.auto_login(hotReload=True)  # 增加'hotReload=True'支持热插拔，短时断线重连
