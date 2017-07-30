@@ -10,11 +10,11 @@ import requests
 def check_phone(content):  # 检查是否有电话号码
 
     for i in range(0, len(content)):
-        if (content[i:i + 11].isdigit()) and (content[i] == '1'):  # TODO:解决不是合法手机号码也会被识别的bug
+        if (content[i:i + 11].isdigit()) and (content[i] == '1'):  # TODO:解决不是合法手机号码也会被识别的bug 2017_07_24
             return content[i:i + 11]
 
 
-def ask_phone(p):  # 这个函数写的不好，不优美 TODO：重构此函数
+def ask_phone(p):  # 这个函数写的不好，不优美 TODO：重构此函数 2017_07_20
     url = 'http://www.ip138.com:8080/search.asp?mobile=%s&action=mobile' % p
     r = requests.get(url)
     r.encoding = 'GBK'

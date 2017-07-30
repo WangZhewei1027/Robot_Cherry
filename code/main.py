@@ -20,13 +20,13 @@ def process(content):  # 在这个函数中编写自定义应答模式，优先�
         return ask_phone(phone_num)
 
 
-def donnotkown(content):
-    return robot_tuling(content)
+def donnotkown(content, userid):
+    return robot_tuling(content, userid)
 
 
-def reply(content):  # 若使用了自定义应答，则返回应答，反则调用图灵机器人，并返回应答
+def reply(content, userid):  # 若使用了自定义应答，则返回应答，反则调用图灵机器人，并返回应答
     answer = process(content)
     if answer is None:
-        return donnotkown(content)
+        return donnotkown(content, userid)
     else:
         return answer

@@ -45,7 +45,7 @@ def search_express(num):
     try:
         info = target['data']
 
-        # print("你的快递所属的公司是：", comCode) TODO:目前大多数情况下无法正常显示快递公司
+        # print("你的快递所属的公司是：", comCode) TODO:目前大多数情况下无法正常显示快递公司 2017_07_22
         str = ''
         for eachData in info:
             str = str + (eachData['context'] + ',' + eachData['time'] + '---' + eachData['ftime']) + '\n'
