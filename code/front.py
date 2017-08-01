@@ -47,8 +47,9 @@ def recoding_reply(msg):
 def text_reply(msg):
     content = msg['Text']
     fromUserName = msg['FromUserName']
+    reply = main.reply(content, fromUserName[5:10])
     time.sleep(random.randint(0, len(content)))
-    itchat.send(main.reply(content, fromUserName[5:10]), toUserName=msg['FromUserName'])
+    itchat.send(reply, toUserName=msg['FromUserName'])
 
 
 @itchat.msg_register(TEXT, isGroupChat=True)  # 后注册的消息优于先注册的消息，在此先处理群聊消息，就不会出现冲突
@@ -61,15 +62,16 @@ def text_reply(msg):
         content = content[0:content.find(ROBOT_NAME) - 1] + content[
                                                             msg['Text'].find(ROBOT_NAME) + len(ROBOT_NAME):len(content)]
         # 这句将content中'@...'去除了
-        time.sleep(random.randint(0, len(content)))
-        itchat.send(u'@%s\u2005%s' % (msg['ActualNickName'], main.reply(content, fromUserName[5:10])), fromUserName)
+        reply = main.reply(content, fromUserName[5:10])
+        time.sleep(random.randint(0, len(reply)))
+        itchat.send(u'@%s\u2005%s' % (msg['ActualNickName'], reply), fromUserName)
         # 这里的'@...'后面要加上'\u2005'这个Unicode字符，这样的@才是有效的
 
 
 def birthday():  # TODO：重写函数 2017_07_27
     p = [['07', '00', '00', '早安', 1], ['12', '00', '00', '午好', 1], ['22', '00', '00', '晚安', 1]]
 
-    class15ChatroomID = '@@8ff7aba40aa33476a7598ca7b9e6336c807c9f02d1247c090aa3f45c4b4bbf64'
+    class15ChatroomID = '@@988d6acddf9c8fa9fb97ed867e548633233b842a6602a11afc16728b672c697c'
     while (1):
         year = time.strftime('%Y', time.localtime(time.time()))
         month = time.strftime('%m', time.localtime(time.time()))
